@@ -75,8 +75,10 @@ export default {
         },
 
         async view() {
-            let response = await axios.put(`http://127.0.0.1:8000/api/article/${this.article.id}/view`);
-            this.article.views = response.data.data.views;
+            await setTimeout(async () => {
+                let response = await axios.put(`http://127.0.0.1:8000/api/article/${this.article.id}/view`);
+                this.article.views = response.data.data.views;
+            }, 5000);
         },
 
         async sendComment() {
