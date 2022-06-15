@@ -64,10 +64,19 @@ export default {
         }
     },
 
+    async mounted() {
+        await this.view();
+    },
+
     methods: {
         async like() {
             let response = await axios.put(`http://127.0.0.1:8000/api/article/${this.article.id}/like`);
             this.article.likes = response.data.data.likes;
+        },
+
+        async view() {
+            let response = await axios.put(`http://127.0.0.1:8000/api/article/${this.article.id}/view`);
+            this.article.views = response.data.data.views;
         },
 
         async sendComment() {
