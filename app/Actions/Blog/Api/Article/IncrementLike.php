@@ -13,7 +13,7 @@ class IncrementLike {
      */
     public function execute(int $articleId): JsonResponse {
         return (new ColumnIncrementor())->increment(
-            Article::query()->find($articleId),
+            Article::query()->lockForUpdate()->find($articleId),
             'likes'
         );
     }
